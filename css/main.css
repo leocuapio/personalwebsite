@@ -1293,7 +1293,7 @@ header .logo a {
  *
  * ------------------------------------------------------------------- 
  */
-#intro {
+ #intro {
 	background: #151515 url(../images/intro-bg.jpg) no-repeat center bottom;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
@@ -1499,23 +1499,21 @@ header .logo a {
 }
 
 .intro-info {
-    margin-top: 4.2rem;
-    margin-right: -30px; /* Consider adjusting or removing this */
-    margin-left: 0; /* Adjust as needed */
-    padding-left: 0px; /* Add padding to create space between image and text */
+	margin-top: 4.2rem;
+	margin-right: -30px;
+	margin-left: -30px;
 }
-
+/* General Image Size Adjustment */
 .intro-info img {
-    height: 15rem;
-    width: 15rem;
-    border-radius: 50%;
-    margin: .9rem 3rem 0 0; /* Adjust margin as needed */
-    float: left;
+	height: 13rem; /* Increase size */
+	width: 13rem;  /* Increase size */
+	border-radius: 50%;
+	margin: .9rem 2rem 0 -3rem; /* Adjust margin to create space on the right */
+	float: left;
 }
-
 .intro-info .lead {
-    text-align: left;
-    padding-left: 1rem; /* Adjust padding to create space */
+	text-align: left;
+	padding-left: 13rem;
 }
 
 .about-content {
@@ -1606,10 +1604,11 @@ header .logo a {
 		margin-top: 3rem;
 	}
 	.intro-info img {
-		height: 6.6rem;
-		width: 6.6rem;
+		height: 9rem;
+		width: 9rem;
 		float: none;
 		display: inline-block;
+		margin-left: 1rem;
 	}
 	.intro-info .lead {
 		padding-left: 0;
@@ -2642,4 +2641,90 @@ footer .copyright span:last-child::after {
 
 .custom-github:hover {
     color: #cc005f; /* GitHub purple on hover */
+}
+
+/* General Container Style */
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Coding Languages Section */
+#coding-languages {
+  padding: 20px;
+  background-color: #ffffff; /* Change background to white */
+  border: 1px solid #ffffff; /* Set border color to white */
+  border-radius: 8px; /* Optional: Add border radius for rounded corners */
+}
+
+#coding-languages h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-family: "poppins-medium", sans-serif;
+  font-size: 3rem;
+  color: #333;
+}
+
+.language-columns {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.column {
+  width: 50%;
+}
+
+.column h3 {
+  text-align: center;
+  margin-bottom: 10px;
+  font-family: "poppins-bold", sans-serif;
+  font-size: 2rem;
+  color: #333;
+}
+
+.language-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.language-item {
+  text-align: center;
+}
+
+.language-item img {
+  max-width: 100px;
+  height: auto;
+}
+
+.language-item p {
+  margin-top: 5px;
+  font-family: "lora-regular", serif;
+  font-size: 1rem;
+  color: #333;
+}
+
+/* Responsive Adjustments */
+@media only screen and (max-width: 1024px) {
+  #coding-languages h2 {
+    font-size: 2.5rem;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  #coding-languages h2 {
+    font-size: 2rem;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .language-columns {
+    flex-direction: column;
+  }
+  .column {
+    width: 100%;
+  }
 }
