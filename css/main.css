@@ -82,7 +82,7 @@ body {
  * -------------------------------------------------------------------
  */
 a, a:visited {
-	color: #000000;
+	color: white;
 	-moz-transition: all 0.3s ease-in-out;
 	-o-transition: all 0.3s ease-in-out;
 	-webkit-transition: all 0.3s ease-in-out;
@@ -1499,20 +1499,23 @@ header .logo a {
 }
 
 .intro-info {
-	margin-top: 4.2rem;
-	margin-right: -30px;
-	margin-left: -30px;
+    margin-top: 4.2rem;
+    margin-right: -30px; /* Consider adjusting or removing this */
+    margin-left: 0; /* Adjust as needed */
+    padding-left: 0px; /* Add padding to create space between image and text */
 }
+
 .intro-info img {
-	height: 9rem;
-	width: 9rem;
-	border-radius: 50%;
-	margin: .9rem 0 0 0;
-	float: left;
+    height: 15rem;
+    width: 15rem;
+    border-radius: 50%;
+    margin: .9rem 3rem 0 0; /* Adjust margin as needed */
+    float: left;
 }
+
 .intro-info .lead {
-	text-align: left;
-	padding-left: 13rem;
+    text-align: left;
+    padding-left: 1rem; /* Adjust padding to create space */
 }
 
 .about-content {
@@ -2536,6 +2539,8 @@ footer .copyright span:last-child::after {
 	display: none;
 }
 
+
+
 /**
  * responsive:
  * footer
@@ -2597,3 +2602,44 @@ footer .copyright span:last-child::after {
 }
 
 /*# sourceMappingURL=main.css.map */
+
+.contact-icons {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    gap: 25px; /* Adjust the value to increase/decrease spacing */
+    justify-content: center; /* Center the icons */
+    margin: 20px 0; /* Add some vertical spacing */
+}
+
+.contact-icons li {
+    display: inline-block;
+}
+
+.contact-icons li a {
+    color: #2B2B2B; /* Set icon color to black */
+    font-size: 3em; /* Adjust size as needed */
+    text-decoration: none;
+}
+
+.contact-icons li a:hover {
+    color: #cc005f; /* Change color on hover */
+}
+
+.custom-linkedin {
+    color: #333; /* LinkedIn blue color */
+    text-decoration: none;
+}
+
+.custom-linkedin:hover {
+    color: #cc005f; /* Darker shade on hover */
+}
+
+.custom-github {
+    color: #333; /* GitHub black color */
+    text-decoration: none;
+}
+
+.custom-github:hover {
+    color: #cc005f; /* GitHub purple on hover */
+}
