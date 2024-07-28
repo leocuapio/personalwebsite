@@ -596,24 +596,24 @@
         <div class="col-twelve">
 
             <!-- form -->
-            <form name="contactForm" id="contactForm" method="post" data-netlify="true">
+			<form name="contactForm" id="contactForm" method="post" data-netlify="true" netlify>
 				<fieldset>
 					<input type="hidden" name="form-name" value="contactForm">
 					<div class="form-field">
-						<input name="contactName" type="text" id="contactName" placeholder="Name" value="" minlength="2" required="">
+						<input name="contactName" type="text" id="contactName" placeholder="Name" minlength="2" required>
 					</div>
 					<div class="form-field">
-						<input name="contactEmail" type="email" id="contactEmail" placeholder="Email" value="" required="" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Please enter a valid email address">
+						<input name="contactEmail" type="email" id="contactEmail" placeholder="Email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Please enter a valid email address">
 					</div>
 					<div class="form-field">
-						<input name="contactSubject" type="text" id="contactSubject" placeholder="Subject" value="">
+						<input name="contactSubject" type="text" id="contactSubject" placeholder="Subject">
 					</div>
 					<div class="form-field">
-						<textarea name="contactMessage" id="contactMessage" placeholder="Message" rows="10" cols="50" required=""></textarea>
+						<textarea name="contactMessage" id="contactMessage" placeholder="Message" rows="10" cols="50" required></textarea>
 					</div>
 					<div class="form-field">
 						<button class="submitform" type="submit">Submit</button>
-						<div id="submit-loader">
+						<div id="submit-loader" style="display: none;">
 							<div class="text-loader">Sending...</div>
 							<div class="s-loader">
 								<div class="bounce1"></div>
@@ -624,8 +624,8 @@
 					</div>
 				</fieldset>
 			</form>
-			<div id="message-warning"></div>
-			<div id="message-success">
+			<div id="message-warning" style="display: none;">Form submission failed</div>
+			<div id="message-success" style="display: none;">
 				<i class="fa fa-check"></i>Your message was sent, thank you!<br>
 			</div>
         </div> <!-- /col-twelve -->
@@ -713,9 +713,7 @@
 		fetch('/', {
 			method: 'POST',
 			body: formData,
-			headers: {
-				'Accept': 'application/json'
-			}
+			headers: { 'Accept': 'application/json' }
 		})
 		.then(function(response) {
 			if (response.ok) {
@@ -723,16 +721,14 @@
 				document.getElementById('message-success').style.display = 'block';
 				document.getElementById('contactForm').reset();
 			} else {
-				response.json().then(function(data) {
-					document.getElementById('submit-loader').style.display = 'none';
-					document.getElementById('message-warning').textContent = data.error || 'Form submission failed';
-					document.getElementById('message-warning').style.display = 'block';
+				return response.json().then(function(data) {
+					throw new Error(data.error || 'Form submission failed');
 				});
 			}
 		})
 		.catch(function(error) {
 			document.getElementById('submit-loader').style.display = 'none';
-			document.getElementById('message-warning').textContent = 'Form submission failed';
+			document.getElementById('message-warning').textContent = error.message;
 			document.getElementById('message-warning').style.display = 'block';
 		});
 	});
