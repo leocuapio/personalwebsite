@@ -596,38 +596,40 @@
         <div class="col-twelve">
 
             <!-- form -->
-			<form name="contactForm" id="contactForm" method="post" data-netlify="true" netlify>
+			<form name="contactForm" id="contactForm" method="post" netlify netlify-honeypot="bot-field">
 				<fieldset>
-					<input type="hidden" name="form-name" value="contactForm">
-					<div class="form-field">
-						<input name="contactName" type="text" id="contactName" placeholder="Name" minlength="2" required>
+				  <div class="form-field">
+					<input name="contactName" type="text" id="contactName" placeholder="Name" minlength="2" required>
+				  </div>
+				  <div class="form-field">
+					<input name="contactEmail" type="email" id="contactEmail" placeholder="Email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Please enter a valid email address">
+				  </div>
+				  <div class="form-field">
+					<input name="contactSubject" type="text" id="contactSubject" placeholder="Subject">
+				  </div>
+				  <div class="form-field">
+					<textarea name="contactMessage" id="contactMessage" placeholder="Message" rows="10" cols="50" required></textarea>
+				  </div>
+				  <div class="form-field">
+					<button class="submitform" type="submit">Submit</button>
+					<div id="submit-loader">
+					  <div class="text-loader">Sending...</div>
+					  <div class="s-loader">
+						<div class="bounce1"></div>
+						<div class="bounce2"></div>
+						<div class="bounce3"></div>
+					  </div>
 					</div>
-					<div class="form-field">
-						<input name="contactEmail" type="email" id="contactEmail" placeholder="Email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Please enter a valid email address">
-					</div>
-					<div class="form-field">
-						<input name="contactSubject" type="text" id="contactSubject" placeholder="Subject">
-					</div>
-					<div class="form-field">
-						<textarea name="contactMessage" id="contactMessage" placeholder="Message" rows="10" cols="50" required></textarea>
-					</div>
-					<div class="form-field">
-						<button class="submitform" type="submit">Submit</button>
-						<div id="submit-loader" style="display: none;">
-							<div class="text-loader">Sending...</div>
-							<div class="s-loader">
-								<div class="bounce1"></div>
-								<div class="bounce2"></div>
-								<div class="bounce3"></div>
-							</div>
-						</div>
-					</div>
+				  </div>
 				</fieldset>
-			</form>
-			<div id="message-warning" style="display: none;">Form submission failed</div>
-			<div id="message-success" style="display: none;">
+			  </form>
+			  
+			  <!-- contact-warning -->
+			  <div id="message-warning"></div>
+			  <!-- contact-success -->
+			  <div id="message-success">
 				<i class="fa fa-check"></i>Your message was sent, thank you!<br>
-			</div>
+			  </div>
         </div> <!-- /col-twelve -->
 
     </div> <!-- /contact-form -->
@@ -702,37 +704,25 @@
    <script src="js/main.js"></script>
    <script>
 	document.getElementById('contactForm').addEventListener('submit', function(event) {
-		event.preventDefault();
-	
-		var form = event.target;
-		var formData = new FormData(form);
-	
-		// Show loader
-		document.getElementById('submit-loader').style.display = 'block';
-	
-		fetch('/', {
-			method: 'POST',
-			body: formData,
-			headers: { 'Accept': 'application/json' }
-		})
-		.then(function(response) {
-			if (response.ok) {
-				document.getElementById('submit-loader').style.display = 'none';
-				document.getElementById('message-success').style.display = 'block';
-				document.getElementById('contactForm').reset();
-			} else {
-				return response.json().then(function(data) {
-					throw new Error(data.error || 'Form submission failed');
-				});
-			}
-		})
-		.catch(function(error) {
-			document.getElementById('submit-loader').style.display = 'none';
-			document.getElementById('message-warning').textContent = error.message;
-			document.getElementById('message-warning').style.display = 'block';
-		});
+	  event.preventDefault();
+	  fetch('/', {
+		method: 'POST',
+		headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+		body: new URLSearchParams(new FormData(event.target)).toString()
+	  }).then(response => {
+		if (response.ok) {
+		  document.getElementById('message-success').style.display = 'block';
+		  document.getElementById('message-warning').style.display = 'none';
+		} else {
+		  document.getElementById('message-warning').style.display = 'block';
+		  document.getElementById('message-success').style.display = 'none';
+		}
+	  }).catch(error => {
+		document.getElementById('message-warning').style.display = 'block';
+		document.getElementById('message-success').style.display = 'none';
+	  });
 	});
-	</script>
+  </script>
    
 	
 </body>
