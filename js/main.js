@@ -216,39 +216,6 @@
 	/*	contact form
 	------------------------------------------------------ */
 /* Local validation */
-$('#contactForm').validate({
-
-    /* Submit via AJAX */
-    submitHandler: function(form) {
-        var sLoader = $('#submit-loader');
-
-        $.ajax({
-            type: "POST",
-            url: "inc/sendEmail.php",
-            data: $(form).serialize(),
-            beforeSend: function() { 
-                sLoader.fadeIn(); 
-                $('#message-success').hide(); // Hide success message before sending
-                $('#message-warning').hide(); // Hide error message before sending
-            },
-            success: function(msg) {
-                console.log('Success Response:', msg); // Log the response for debugging
-
-                sLoader.fadeOut(); 
-                if (msg.trim() === 'OK') {
-                    $('#contactForm').fadeOut();
-                    $('#message-success').fadeIn();
-                } else {
-                    $('#message-warning').html(msg).fadeIn();
-                }
-            },
-            error: function() {
-                sLoader.fadeOut(); 
-                $('#message-warning').html("Something went wrong. Please try again.").fadeIn();
-            }
-        });
-    }
-});
 
 
  	/*----------------------------------------------------- */
