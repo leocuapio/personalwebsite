@@ -596,43 +596,41 @@
         <div class="col-twelve">
 
             <!-- form -->
-            <form name="contactForm" id="contactForm" method="post" action="">
-                <fieldset>
-
-                    <div class="form-field">
-                        <input name="contactName" type="text" id="contactName" placeholder="Name" value="" minlength="2" required="">
-                    </div>
-                    <div class="form-field">
-                        <input name="contactEmail" type="email" id="contactEmail" placeholder="Email" value="" required="" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Please enter a valid email address">
-                    </div>
-                    <div class="form-field">
-                        <input name="contactSubject" type="text" id="contactSubject" placeholder="Subject" value="">
-                    </div>
-                    <div class="form-field">
-                        <textarea name="contactMessage" id="contactMessage" placeholder="Message" rows="10" cols="50" required=""></textarea>
-                    </div>
-                    <div class="form-field">
-                        <button class="submitform" type="submit">Submit</button>
-                        <div id="submit-loader">
-                            <div class="text-loader">Sending...</div>
-                            <div class="s-loader">
-                                <div class="bounce1"></div>
-                                <div class="bounce2"></div>
-                                <div class="bounce3"></div>
-                            </div>
-                        </div>
-                    </div>
-
-                </fieldset>
-            </form> <!-- Form End -->
-
-            <!-- contact-warning -->
-            <div id="message-warning">
-            </div>
-            <!-- contact-success -->
-            <div id="message-success">
-                <i class="fa fa-check"></i>Your message was sent, thank you!<br>
-            </div>
+            <form name="contactForm" id="contactForm" method="post" netlify netlify-honeypot="bot-field" action="/success">
+				<input type="hidden" name="form-name" value="contactForm">
+				<fieldset>
+					<div class="form-field">
+						<input name="contactName" type="text" id="contactName" placeholder="Name" value="" minlength="2" required="">
+					</div>
+					<div class="form-field">
+						<input name="contactEmail" type="email" id="contactEmail" placeholder="Email" value="" required="" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Please enter a valid email address">
+					</div>
+					<div class="form-field">
+						<input name="contactSubject" type="text" id="contactSubject" placeholder="Subject" value="">
+					</div>
+					<div class="form-field">
+						<textarea name="contactMessage" id="contactMessage" placeholder="Message" rows="10" cols="50" required=""></textarea>
+					</div>
+					<div class="form-field">
+						<button class="submitform" type="submit">Submit</button>
+						<div id="submit-loader">
+							<div class="text-loader">Sending...</div>
+							<div class="s-loader">
+								<div class="bounce1"></div>
+								<div class="bounce2"></div>
+								<div class="bounce3"></div>
+							</div>
+						</div>
+					</div>
+				</fieldset>
+			</form> <!-- Form End -->
+			
+			<!-- contact-warning -->
+			<div id="message-warning"></div>
+			<!-- contact-success -->
+			<div id="message-success">
+				<i class="fa fa-check"></i>Your message was sent, thank you!<br>
+			</div>
 
         </div> <!-- /col-twelve -->
 
@@ -706,63 +704,7 @@
    <script src="js/jquery-2.1.3.min.js"></script>
    <script src="js/plugins.js"></script>
    <script src="js/main.js"></script>
-   <script>
-	document.addEventListener("DOMContentLoaded", function() {
-    const contactForm = document.getElementById("contactForm");
-
-    contactForm.addEventListener("submit", function(e) {
-        e.preventDefault(); // Prevent the form from submitting the traditional way
-
-        // Show the loader
-        document.getElementById("submit-loader").style.display = "block";
-
-        // Hide success and error messages initially
-        document.getElementById("message-success").style.display = "none";
-        document.getElementById("message-warning").style.display = "none";
-
-        // Gather form data
-        const formData = {
-            name: document.getElementById("contactName").value,
-            email: document.getElementById("contactEmail").value,
-            subject: document.getElementById("contactSubject").value,
-            message: document.getElementById("contactMessage").value
-        };
-
-        // Send the form data using fetch (AJAX)
-        fetch("http://localhost:3000/send", { // Update the URL to match your backend
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(formData)
-        })
-        .then(response => response.json())
-        .then(data => {
-            // Hide the loader
-            document.getElementById("submit-loader").style.display = "none";
-
-            if (data.success) {
-                // Show success message
-                document.getElementById("message-success").style.display = "block";
-                contactForm.reset(); // Reset form fields
-            } else {
-                // Show error message
-                document.getElementById("message-warning").innerText = data.message;
-                document.getElementById("message-warning").style.display = "block";
-            }
-        })
-        .catch(error => {
-            // Hide the loader
-            document.getElementById("submit-loader").style.display = "none";
-
-            // Show error message
-            document.getElementById("message-warning").innerText = "There was an error sending your message. Please try again later.";
-            document.getElementById("message-warning").style.display = "block";
-        });
-    });
-});
-
-	</script>
+   
 	
 </body>
 
