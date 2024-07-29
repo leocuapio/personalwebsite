@@ -596,7 +596,7 @@
         <div class="col-twelve">
 
             <!-- form -->
-			<form name="contactForm" id="contactForm" method="post" netlify netlify-honeypot="bot-field">
+			<form id="contactForm" action="https://formspree.io/f/your-form-id" method="post">
 				<fieldset>
 				  <div class="form-field">
 					<input name="contactName" type="text" id="contactName" placeholder="Name" minlength="2" required>
@@ -612,7 +612,7 @@
 				  </div>
 				  <div class="form-field">
 					<button class="submitform" type="submit">Submit</button>
-					<div id="submit-loader">
+					<div id="submit-loader" style="display:none;">
 					  <div class="text-loader">Sending...</div>
 					  <div class="s-loader">
 						<div class="bounce1"></div>
@@ -623,13 +623,12 @@
 				  </div>
 				</fieldset>
 			  </form>
-			  
-			  <!-- contact-warning -->
-			  <div id="message-warning"></div>
-			  <!-- contact-success -->
-			  <div id="message-success">
-				<i class="fa fa-check"></i>Your message was sent, thank you!<br>
+			  <div id="form-messages" style="display:none;">
+				<div id="success-message" style="color: green;">Thank you for your message!</div>
+				<div id="error-message" style="color: red;">There was a problem with your submission. Please try again.</div>
 			  </div>
+			  
+		
         </div> <!-- /col-twelve -->
 
     </div> <!-- /contact-form -->
@@ -705,22 +704,34 @@
    <script>
 	document.getElementById('contactForm').addEventListener('submit', function(event) {
 	  event.preventDefault();
-	  fetch('/', {
-		method: 'POST',
-		headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-		body: new URLSearchParams(new FormData(event.target)).toString()
-	  }).then(response => {
-		if (response.ok) {
-		  document.getElementById('message-success').style.display = 'block';
-		  document.getElementById('message-warning').style.display = 'none';
+	  
+	  var form = event.target;
+	  var data = new FormData(form);
+	  var xhr = new XMLHttpRequest();
+	  xhr.open(form.method, form.action);
+	  xhr.setRequestHeader('Accept', 'application/json');
+	  
+	  document.getElementById('submit-loader').style.display = 'block';
+	  document.getElementById('form-messages').style.display = 'none';
+	  
+	  xhr.onreadystatechange = function() {
+		if (xhr.readyState !== XMLHttpRequest.DONE) return;
+		
+		document.getElementById('submit-loader').style.display = 'none';
+		
+		if (xhr.status === 200) {
+		  form.reset();
+		  document.getElementById('success-message').style.display = 'block';
+		  document.getElementById('error-message').style.display = 'none';
 		} else {
-		  document.getElementById('message-warning').style.display = 'block';
-		  document.getElementById('message-success').style.display = 'none';
+		  document.getElementById('success-message').style.display = 'none';
+		  document.getElementById('error-message').style.display = 'block';
 		}
-	  }).catch(error => {
-		document.getElementById('message-warning').style.display = 'block';
-		document.getElementById('message-success').style.display = 'none';
-	  });
+		
+		document.getElementById('form-messages').style.display = 'block';
+	  };
+	  
+	  xhr.send(data);
 	});
   </script>
    
