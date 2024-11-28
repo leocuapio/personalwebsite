@@ -29,11 +29,56 @@
 
    <!-- favicons
 	================================================== -->
-	<link rel="icon" type="image/png" href="images/logo.png">
+	<link rel="icon" type="image/png" href="images/personalfavi.png">
  <style>#once {
 	color: white;
 	text-decoration: underline;
-}</style>
+	
+}
+.skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .skill-card {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            padding: 20px;
+        }
+
+        .skill-card img {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 10px;
+        }
+
+        .skill-card h3 {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+
+        .skill-card p {
+            font-size: 14px;
+            color: #555;
+        }
+
+        .category {
+            margin-top: 40px;
+        }
+
+        .category h2 {
+            text-align: left;
+            margin-bottom: 10px;
+            font-size: 24px;
+            color: #007bff;
+        }
+</style>
 </head>
 
 <body id="top">
@@ -195,61 +240,82 @@
    	</div>
 <br><br>
 <div class="container">
-    <h2 style="text-align: center;">Coding Languages</h2>
-    <div class="language-columns">
-        <div class="column front-end">
-            <h3>Front-End</h3><br>
-            <div class="language-grid">
-                <div class="language-item">
-                    <img src="images/html.png" alt="HTML5">
-                    <p class="lead" style="font-family: 'lora-regular', serif; font-size: 1.7rem;">HTML5<br>Proficent</p>
-                </div>
-                <div class="language-item">
-                    <img src="images/css.png" alt="CSS3">
-                    <p class="lead" style="font-family: 'lora-regular', serif; font-size: 1.7rem;">CSS3<br>Proficent</p>
-                </div>
-                <div class="language-item">
-                    <img src="images/boot.png" alt="Bootstrap">
-                    <p class="lead" style="font-family: 'lora-regular', serif; font-size: 1.7rem;">Bootstrap<br>Proficent</p>
-                </div>
-                <!-- Additional front-end languages for the new row -->
-                <div class="language-item">
-                    <img src="images/js.png" alt="JavaScript">
-                    <p class="lead" style="font-family: 'lora-regular', serif; font-size: 1.7rem;">JavaScript<br>Beginner</p>
-                </div>
-                <div class="language-item">
-                    <img src="images/flutter.png" alt="React">
-                    <p class="lead" style="font-family: 'lora-regular', serif; font-size: 1.7rem;">Flutter<br>Beginner</p>
-                </div>
-            </div>
+    <h1 style="text-align: center;">My Skills Showcase</h1>
+
+<div class="category">
+    <h2 style="text-align: center; color:#287AA2 ;">Languages</h2>
+    <div class="skills-container">
+        <div class="skill-card">
+            <img src="images/html.png" alt="HTML5 Icon">
+            <h3>HTML5</h3>
+            <p>Proficient</p>
         </div>
-        <div class="column back-end">
-            <h3>Back-End</h3><br>
-            <div class="language-grid">
-                <div class="language-item">
-                    <img src="images/python.png" alt="Python">
-                    <p class="lead" style="font-family: 'lora-regular', serif; font-size: 1.7rem;">Python<br>Intermidate</p>
-                </div>
-                <div class="language-item">
-                    <img src="images/c++.png" alt="C++">
-                    <p class="lead" style="font-family: 'lora-regular', serif; font-size: 1.7rem;">C++<br>Intermidate</p>
-                </div>
-                <div class="language-item">
-                    <img src="images/sql.png" alt="SQL">
-                    <p class="lead" style="font-family: 'lora-regular', serif; font-size: 1.7rem;">SQL<br>Intermidate</p>
-                </div>
-                <!-- Additional back-end languages for the new row -->
-                <div class="language-item">
-                    <img src="images/laravel.png" alt="Node.js">
-                    <p class="lead" style="font-family: 'lora-regular', serif; font-size: 1.7rem;">Laravel<br>Beginner</p>
-                </div>
-                <div class="language-item">
-                    <img src="images/java.png" alt="Java">
-                    <p class="lead" style="font-family: 'lora-regular', serif; font-size: 1.7rem;">Java<br>Beginner</p>
-                </div>
-            </div>
+        <div class="skill-card">
+            <img src="images/css.png" alt="CSS3 Icon">
+            <h3>CSS3</h3>
+            <p>Proficient</p>
+        </div>
+        <div class="skill-card">
+            <img src="images/python.png" alt="Python Icon">
+            <h3>Python</h3>
+            <p>Intermediate</p>
+        </div>
+        <div class="skill-card">
+            <img src="images/c++.png" alt="C++ Icon">
+            <h3>C++</h3>
+            <p>Intermediate</p>
+        </div>
+		<div class="skill-card">
+            <img src="images/java.png" alt="Python Icon">
+            <h3>Java</h3>
+            <p>Intermediate</p>
+        </div>
+        <div class="skill-card">
+            <img src="images/sql.png" alt="C++ Icon">
+            <h3>SQL</h3>
+            <p>Intermediate</p>
+        </div>
+		<div class="skill-card">
+            <img src="images/csharp.png" alt="C# Icon">
+            <h3>C#</h3>
+            <p>Beginner</p>
+        </div>
+		
+    </div>
+</div>
+
+<div class="category">
+    <h2 style="text-align: center; color: #287AA2;">Frameworks & Libraries</h2>
+    <div class="skills-container">
+        <div class="skill-card">
+            <img src="images/boot.png" alt="Bootstrap Icon">
+            <h3>Bootstrap</h3>
+            <p>Proficient</p>
+        </div>
+        <div class="skill-card">
+            <img src="images/flutter.png" alt="Flutter Icon">
+            <h3>Flutter</h3>
+            <p>Beginner</p>
+        </div>
+        <div class="skill-card">
+            <img src="images/laravel.png" alt="Laravel Icon">
+            <h3>Laravel</h3>
+            <p>Beginner</p>
+        </div>
+		<div class="skill-card">
+            <img src="images/react.png" alt="Laravel Icon">
+            <h3>React</h3>
+            <p>Beginner</p>
+        </div>
+		<div class="skill-card">
+            <img src="images/mysql.png" alt="Laravel Icon">
+            <h3>MySQL</h3>
+            <p>Beginner</p>
         </div>
     </div>
+</div>
+
+
 </div>
   </section>
 
@@ -483,6 +549,7 @@
 							   </a>
 							</div>
 							 </div> 
+							 
 
 
 	            <!-- modal popups - begin
